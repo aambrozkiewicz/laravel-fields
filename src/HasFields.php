@@ -12,12 +12,7 @@ trait HasFields
         return $this->hasMany(FieldValue::class, 'fieldable_id');
     }
 
-    static function fields()
-    {
-        return Field::where('fieldable_type', static::class)->get();
-    }
-
-    function field(string $name)
+    function value(string $name)
     {
         $field = $this->values->first(function($value) use ($name) {
             return $value->field->name == $name;
@@ -26,6 +21,11 @@ trait HasFields
         if ($field) {
             return $field->field->impl->get($field->value);
         }
+    }
+
+    static function fields()
+    {
+        return Field::where('fieldable_type', static::class)->get();
     }
 
     /**
