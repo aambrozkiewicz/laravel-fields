@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Field extends Model
 {
+    protected $fillable = ['fieldable_type', 'name', 'impl', 'view'];
+
     public $timestamps = false;
 
     function getImplAttribute($value)
@@ -15,6 +17,8 @@ class Field extends Model
 
     function setImplAttribute($value)
     {
-        $this->attributes['impl'] = get_class($value);
+        $this->attributes['impl'] = is_object($value)
+            ? get_class($value)
+            : $value;
     }
 }

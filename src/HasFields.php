@@ -23,17 +23,12 @@ trait HasFields
         }
     }
 
-    static function fields()
-    {
-        return Field::where('fieldable_type', static::class)->get();
-    }
-
     /**
      * @param array $fields Key being Field ID and value
      */
     function saveValues(array $fields)
     {
-        collect($fields)->each(function($value, $id) {
+        collect($fields)->filter()->each(function($value, $id) {
             $field = Field::findOrFail($id);
 
             $this->values()->updateOrCreate([
@@ -44,6 +39,22 @@ trait HasFields
                     ? null
                     : $field->impl->set($value)
             ]);
+        });
+    }
+
+    static function fields()
+    {
+        return Field::where('fieldable_type', static::class)->get();
+    }
+
+    static function saveFields(array $fields)
+    {
+        collect($fields)->each(function($field) {
+            if (!is_object($field)) {
+                $field = new Field($field);
+            }
+
+            $field-save();
         });
     }
 }
