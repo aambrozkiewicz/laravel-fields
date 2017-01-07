@@ -1,0 +1,11 @@
+{
+    "name": "aleksander/laravel-fields",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Aleksander Ambrozkiewicz",
+            "email": "a.ambrozkiewicz@gmail.com"
+        }
+    ],
+    "require": {}
+}
