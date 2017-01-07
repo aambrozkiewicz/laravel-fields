@@ -6,7 +6,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     public function boot()
     {
-        if (! class_exists('CreatePermissionTables')) {
+        if (! class_exists('CreateFieldsTable')) {
             $timestamp = date('Y_m_d_His', time());
             $this->publishes([
                 __DIR__.'/../resources/migrations/create_fields_tables.stub.php'

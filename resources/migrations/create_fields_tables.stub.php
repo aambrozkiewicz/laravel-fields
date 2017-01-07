@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFieldsTable extends Migration
+class CreateFieldsTables extends Migration
 {
     /**
      * Run the migrations.
@@ -21,7 +21,7 @@ class CreateFieldsTable extends Migration
             $table->string('view')->nullable();
         });
 
-        Schema::create('field_value', function(Blueprint $table) {
+        Schema::create('field_values', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('field_id')->unsigned();
             $table->integer('fieldable_id');

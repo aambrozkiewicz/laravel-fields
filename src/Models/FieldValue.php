@@ -12,4 +12,9 @@ class FieldValue extends Model
     {
         return $this->belongsTo(Field::class);
     }
+
+    function getValueAttribute($value)
+    {
+        return $this->field->impl->get($value);
+    }
 }

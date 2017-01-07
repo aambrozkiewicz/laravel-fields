@@ -18,9 +18,7 @@ trait HasFields
             return $value->field->name == $name;
         });
 
-        if ($field) {
-            return $field->field->impl->get($field->value);
-        }
+        return $field->value ?? null;
     }
 
     /**
