@@ -5,7 +5,7 @@ namespace aambrozkiewicz\Fields;
 use aambrozkiewicz\Fields\Models\Field;
 use aambrozkiewicz\Fields\Models\FieldValue;
 
-trait HasFields
+trait HasValues
 {
     function values()
     {
@@ -27,32 +27,12 @@ trait HasFields
     function saveValues(array $fields)
     {
         collect($fields)->filter()->each(function($value, $id) {
-            $field = Field::findOrFail($id);
-
             $this->values()->updateOrCreate([
-                'field_id' => $field->getKey(),
+                'field_id' => $id,
                 'fieldable_id' => $this->getKey()
             ], [
-                'value' => !strlen($value)
-                    ? null
-                    : $field->impl->set($value)
+                'value' => $value
             ]);
-        });
-    }
-
-    static function fields()
-    {
-        return Field::where('fieldable_type', static::class)->get();
-    }
-
-    static function saveFields(array $fields)
-    {
-        collect($fields)->each(function($field) {
-            if (!is_object($field)) {
-                $field = new Field($field);
-            }
-
-            $field-save();
         });
     }
 }

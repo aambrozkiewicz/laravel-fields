@@ -17,4 +17,9 @@ class FieldValue extends Model
     {
         return $this->field->impl->get($value);
     }
+
+    function setValueAttribute($value)
+    {
+        $this->attributes['value'] = $this->field->impl->set($value);
+    }
 }

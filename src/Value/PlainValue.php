@@ -11,6 +11,6 @@ class PlainValue
 
     function set($value)
     {
-        return $value;
+        return strlen($value) ? $value : null;
     }
 }
