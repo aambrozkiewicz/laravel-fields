@@ -2,6 +2,7 @@
 
 This package allows to attach fields to Eloquent models.
 
+#### Quick start
 
 ```php
 $bookFields = app(aambrozkiewicz\Fields\FieldRepository)->for(App\Book);
@@ -15,4 +16,13 @@ $bookFields = app(aambrozkiewicz\Fields\FieldRepository)->for(App\Book);
 
 Book::findOrFail(1)->value('isbn');
 // ABN-3485
+```
+
+#### Save
+
+```php
+$book = \App\Book::find(1);
+$book->saveValues([
+    1 /* field_id */ => 'ABN-3485'
+]);
 ```
