@@ -2,6 +2,8 @@
 
 namespace aambrozkiewicz\Fields;
 
+use Illuminate\Support\Collection;
+
 class EloquentFieldRepository implements FieldRepository
 {
     private $fieldModel;
@@ -11,7 +13,7 @@ class EloquentFieldRepository implements FieldRepository
         $this->fieldModel = $fieldModel;
     }
 
-    function for(string $className)
+    function for(string $className) : Collection
     {
         return ($this->fieldModel)::where('fieldable_type', $className)->get();
     }

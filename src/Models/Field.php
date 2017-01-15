@@ -14,11 +14,4 @@ class Field extends Model
     {
         return app($value);
     }
-
-    function setImplAttribute($value)
-    {
-        $this->attributes['impl'] = is_object($value)
-            ? get_class($value)
-            : $value;
-    }
 }
